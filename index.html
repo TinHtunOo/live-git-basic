@@ -8,57 +8,34 @@
       rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.css"
     />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
-
-      ul.a {
-        font-family: "Outfit", sans-serif;
-        list-style-position: outside;
-        padding-left: 1rem;
-        margin: 0;
-      }
-      li {
-        padding-left: 40px;
-        margin: 0;
-      }
-      .ww {
-        padding: 50px;
-      }
-    </style>
   </head>
 
   <body>
-    <h1>The list-style-position Property</h1>
-
-    <div class="ww">
-      <h2>list-style-position: outside (default):</h2>
-      <ul class="a">
-        <li>
-          Coffee - A brewed drink prepared from roasted coffee beans, which are
-          the seeds of berries from the Coffea plant
-        </li>
-        <li>
-          Tea - An aromatic beverage commonly prepared by pouring hot or boiling
-          water over cured leaves of the Camellia sinensis, an evergreen shrub
-          (bush) native to Asia
-        </li>
-        <li>
-          Coca Cola - A carbonated soft drink produced by The Coca-Cola Company.
-          The drink's name refers to two of its original ingredients, which were
-          kola nuts (a source of caffeine) and coca leaves
-        </li>
-      </ul>
+    <div class="p-5">
+      <span id="info"></span>
+      <h1>Result: <span id="usd">0</span> USD</h1>
+      <input type="number" name="" id="mmkinput" placeholder="input mmk" />
+      <button id="btn">To USD</button>
     </div>
-
-    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    
     <script>
+      let info = document.querySelector("#info");
+      let usd = document.querySelector("#usd");
+      let mmkinput = document.querySelector("#mmkinput");
+      let btn = document.querySelector("#btn");
+      let usdToMmkRate = 2450;
 
-      if(window.confirm("Do you want to calcualate?")){
-        let num1 = window.prompt("type number 1");
-        let num2 = window.prompt("type number 2");
-        alert(Number(num1)+parseFloat(num2))
-      }
-
+      btn.addEventListener('click', function(){
+        if(mmkinput.value){
+          let result = mmkinput.valueAsNumber/usdToMmkRate;
+          usd.innerText = result.toFixed(2);
+          info.innerText = mmkinput.value + ' kyat is equal to';
+          mmkinput.value = null
+        }else{
+          info.innerText = 'Please enter the value.'
+        }
+        
+      })
     </script>
   </body>
 </html>
