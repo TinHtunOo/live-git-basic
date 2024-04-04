@@ -8,20 +8,25 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="m-5">
+    <div class="m-5 w-25 ">
         <ul class="list-group list">
             
         </ul>
+    
+    <input type="text" class="form-control mt-3 " name="" id="input">
     </div>
-    <input type="text" class="form-control w-50 " name="" id="input">
     <script>
         let list= document.querySelector('.list');
         let input = document.querySelector('#input');
         function creatlist(x){
-            let li = document.createElement('li');
-            li.innerHTML = x;
-            li.classList.add('list-group-item','animate__animated','animate__bounce')
-            list.append(li)
+            if(x.length == 0){
+            }else{
+                let li = document.createElement('li');
+                li.innerHTML = x;
+                li.innerHTML += '<button class="btn btn-danger del-list">Del</button>'
+                li.classList.add('list-group-item','animate__animated','animate__bounce', 'd-flex', 'justify-content-between')
+                list.append(li)
+            }
         }
 
         input.addEventListener('keydown',function(e){
@@ -30,6 +35,16 @@
                 input.value=null
             }
         })
+
+        list.addEventListener('click',function(e){
+            if(e.target.classList.contains('del-list')){
+                e.target.parentElement.classList.replace('animate__bounce', 'animate__shakeX');
+                setTimeout(function(){
+                    e.target.parentElement.remove()
+                }, 1000)
+            }
+        })
+
 
 
     </script>
